@@ -10,6 +10,37 @@ namespace Template_Method
     {
         static void Main(string[] args)
         {
+            Logger log;
+            int select;
+            int severity;
+            string message;
+
+            Console.Write("Unesite 1-logiranje txt,  2-logiranje xml,  0-kraj: ");
+            Int32.TryParse(Console.ReadLine(), out select);
+
+            while (select != 0)
+            {
+                switch (select)
+                {
+                    case 1:
+                        log = new TextLogger("log.txt");
+                        break;
+                    case 2:
+                        log = new XmlLogger("log.xml");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                Console.Write("Unesite značajnost poruke (0-7): ");
+                Int32.TryParse(Console.ReadLine(), out severity);
+                Console.Write("Unesite poruku: ");
+                message = Console.ReadLine();
+                log.LogMessage(severity, message);
+                Console.WriteLine(log.ToString());
+
+                Console.Write("Unesite 1-txt,  2-xml,  0-kraj: ");
+                Int32.TryParse(Console.ReadLine(), out select);
+            }
         }
     }
 }
