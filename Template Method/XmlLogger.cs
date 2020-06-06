@@ -9,22 +9,21 @@ namespace Template_Method
 {
     class XmlLogger : Logger
     {
+        
         public XmlLogger (string path)
         {
             this.path = path;
         }
-
-        protected override string WriteText(int severity, string message)
+        
+        protected override void CreateLogText(int severity, string message)
         {
-            StringBuilder logMessage = new StringBuilder();
-            logMessage.Append("<log type=\"");
-            logMessage.Append(GetSeverity(severity));
-            logMessage.Append("\" datetime=\"");
-            logMessage.Append(DateTime.Now.ToString());
-            logMessage.Append("\">");
-            logMessage.Append(message);
-            logMessage.Append("</log>");
-            return logMessage.ToString();
+            logWriter.Write("<log type=\"");
+            logWriter.Write(GetSeverity(severity));
+            logWriter.Write("\" datetime=\"");
+            logWriter.Write(DateTime.Now.ToString());
+            logWriter.Write("\">");
+            logWriter.Write(message);
+            logWriter.Write("</log>");            
         }
     }
 }

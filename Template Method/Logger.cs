@@ -33,16 +33,23 @@ namespace Template_Method
                     throw new ArgumentOutOfRangeException();
             }
         }
+        
+        protected abstract void CreateLogText(int severity, string message);
 
-        protected abstract string WriteText(int severity, string message);
-
-        public void WriteLog(int severity, string message)
+        public void LogMessage(int severity, string message)
         {
-            TextWriter writer = new StreamWriter(path, append: true);
-            writer.WriteLine(WriteText(severity, message));
-            writer.Close();
+            TextWriter fileWriter = new StreamWriter(path, append: true);
+            CreateLogText(severity, message);
+            fileWriter.WriteLine(logWriter);
+            fileWriter.Close();
+        }
+
+        public override string ToString()
+        {
+            return logWriter.ToString();
         }
 
         protected string path;
+        protected TextWriter logWriter = new StringWriter();
     }
 }

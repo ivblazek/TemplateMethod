@@ -13,17 +13,15 @@ namespace Template_Method
         {
             this.path = path;
         }
-
-        protected override string WriteText(int severity, string message)
+                
+        protected override void CreateLogText(int severity, string message)
         {
-            StringBuilder logMessage = new StringBuilder();
-            logMessage.Append("Log: ");
-            logMessage.Append(GetSeverity(severity));
-            logMessage.Append(", ");
-            logMessage.Append(DateTime.Now.ToString());
-            logMessage.Append(", ");
-            logMessage.Append(message);
-            return logMessage.ToString();
+            logWriter.Write("Log: ");
+            logWriter.Write(GetSeverity(severity));
+            logWriter.Write(", ");
+            logWriter.Write(DateTime.Now.ToString());
+            logWriter.Write(", ");
+            logWriter.Write(message);
         }
     }
 }
