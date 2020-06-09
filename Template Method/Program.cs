@@ -15,7 +15,8 @@ namespace Template_Method
             int severity;
             string message;
 
-            Console.Write("Unesite 1-logiranje txt,  2-logiranje xml,  0-kraj: ");
+            Console.WriteLine("Program za simulaciju logiranja poruka");
+            Console.Write("Unesite 1-txt,  2-xml,  0-kraj: ");
             Int32.TryParse(Console.ReadLine(), out select);
 
             while (select != 0)
@@ -31,6 +32,7 @@ namespace Template_Method
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+
                 Console.Write("Unesite značajnost poruke (0-7): ");
                 Int32.TryParse(Console.ReadLine(), out severity);
                 Console.Write("Unesite poruku: ");
