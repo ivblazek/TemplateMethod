@@ -24,10 +24,10 @@ namespace Template_Method
                 switch (select)
                 {
                     case 1:
-                        log = new TextLogger("log.txt");
+                        log = new TextLogger();
                         break;
                     case 2:
-                        log = new XmlLogger("log.xml");
+                        log = new XmlLogger();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

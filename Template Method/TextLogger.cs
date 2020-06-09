@@ -9,14 +9,9 @@ namespace Template_Method
 {
     class TextLogger : Logger
     {
-        public TextLogger(string path)
-        {
-            this.path = path;
-        }
-
         protected override void OpenFile()
         {
-            fileWriter = new StreamWriter(path, append: true);
+            fileWriter = new StreamWriter("log.txt", append: true);
         }
 
         protected override void CreateLogText(int severity, string message)
@@ -38,8 +33,7 @@ namespace Template_Method
         {
             fileWriter.Close();
         }
-
-        protected string path;
+        
         TextWriter fileWriter;
     }
 }

@@ -9,15 +9,9 @@ namespace Template_Method
 {
     class XmlLogger : Logger
     {
-        
-        public XmlLogger (string path)
-        {
-            this.path = path;
-        }
-
         protected override void OpenFile()
         {
-            fileWriter = new StreamWriter(path, append: true);
+            fileWriter = new StreamWriter("log.xml", append: true);
         }
 
         protected override void CreateLogText(int severity, string message)
@@ -41,7 +35,6 @@ namespace Template_Method
             fileWriter.Close();
         }
 
-        protected string path;
         TextWriter fileWriter;
     }
 }
