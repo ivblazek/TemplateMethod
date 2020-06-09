@@ -14,7 +14,12 @@ namespace Template_Method
         {
             this.path = path;
         }
-        
+
+        protected override void OpenFile()
+        {
+            fileWriter = new StreamWriter(path, append: true);
+        }
+
         protected override void CreateLogText(int severity, string message)
         {
             logWriter.Write("<log type=\"");
@@ -25,5 +30,18 @@ namespace Template_Method
             logWriter.Write(message);
             logWriter.Write("</log>");            
         }
+
+        protected override void WriteToFile()
+        {
+            fileWriter.WriteLine(logWriter);
+        }
+
+        protected override void CloseFile()
+        {
+            fileWriter.Close();
+        }
+
+        protected string path;
+        TextWriter fileWriter;
     }
 }
